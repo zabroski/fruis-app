@@ -1,13 +1,109 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import ProductImage from './ProductImahe';
+import ProductImage from './ProductImage';
+import SizeSelectors from './SizeSelectors';
+import ColorSelectors from './ColorSelectors'
+
+var inventory = {
+  allSizes: (function(small, large) {
+    let sizes = [];
+    for (let i = small; i<= large; i++){
+      sizes.push(i);
+      sizes.push(i + 0.5)
+    }
+    return sizes;
+  })(7, 11),
+
+  allColors: ['red', 'blue', 'purple', 'brown'],
+
+  bySIze : {
+    "7": [
+      "red", "blue"
+    ],
+
+    "7.5": [
+      "red", "blue"
+    ],
+
+    "8": [
+      "red", 'brown', 'green', 'purple', 'blue'
+    ],
+    "8.5": [
+      'red', 'blue'
+    ],
+    "9": [
+      'brown', 'green', 'purple'
+    ],
+    "9.5": [
+      'brown', 'green'
+    ],
+
+    "10": [
+      'red', 'green', 'blue', 'brown'
+    ],
+
+    "10.5": [
+      'red','green'
+    ]
+
+  },
+
+  byColor: {
+    "red" :['7','8', '8.5'],
+    "blue":[ '7', '7.5', '8', '8.5'],
+    "brown" :['8', '9', '9.5', '10'],
+    "purple": ['9', '9.5', '10.5'],
+    "green": [ '8', '9', '9.5', '10', '']
+  }
+
+};
+
+interface IProps {
+  color: string
+  size: string
+  handleSizeChange: any,
+  handleColorChange:any
+}
 
 
-function App() {
+function App(props:any) {
+  const {
+    color,
+    size,
+  } = props
+
+
+  // const [ size , setSize ] = useState(8);
+  //  const [ sizes, setSizes ] = useState(inventory.allSizes);
+
+  // const [ color, setColor ] = useState('red');
+  // const [ colors, setColors ] = useState(allColors)
+
+  var handleSizeChange:any = (selectedSize:any) =>{
+    // let availablrColors = bySize[selectedSize]
+    // setColors(availableColors)
+    // selectedSize()
+
+  }
+
+
+  var handleColorChange:any = () => {
+
+    // let availbleColor = byColor[selectedColor];
+    // setColors(availableColors)
+  }
+
   return (
     <div className="App">
-    <h1>Fruits App</h1>
-    <ProductImage />
+        <h1>Fruits App</h1>
+        <div>
+          <ProductImage color= {color}/>
+        </div>
+
+        <div>
+          <SizeSelectors size={size} handleSizeChange ={handleSizeChange}/>
+          <ColorSelectors color={color}  handleColorChange={handleColorChange}  />
+        </div>
     </div>
   );
 }
