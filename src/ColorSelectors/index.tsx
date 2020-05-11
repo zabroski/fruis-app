@@ -2,22 +2,16 @@ import React from 'react';
 
 interface IProps {
     color:string,
-    handleColorChange:any
+    colors:Array<any>,
+    handleColorChange:Function
 }
 
 
 
 const ColorSelectors: React.FC<IProps>= (props: IProps) => {
 
-    const {
-        color
-    } = props
-
-
     function ColorOption() {
-        let allColors = ["red", "blue", "brown", "purple"]
-        let colors = allColors
-        return colors.map(function(num:any) {
+        return props.colors.map(function(num:any) {
             return (
                 <option value={num} key={num}>
                     {num}
@@ -27,6 +21,7 @@ const ColorSelectors: React.FC<IProps>= (props: IProps) => {
         })
 
     }
+
 
     function onColorChange(e:any) {
         props.handleColorChange(e.target.value);
@@ -44,9 +39,7 @@ const ColorSelectors: React.FC<IProps>= (props: IProps) => {
             </select>
             {ColorOption}
         </div>
-
     )
-
 }
 
 

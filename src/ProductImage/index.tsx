@@ -7,20 +7,17 @@ interface IProps {
 
 const ProductImage: React.FC<IProps> = (props: IProps) => {
 
-    const {
-        color
-    } = props
+    // const {
+    //     color
+    // } = props
 
     const imgProps = {
-        // src:{`../../assets/red.jpg ${props.color}`}
-
-        src: "../../assets/red.jpg"
+        src: `../../../assets/${props.color}.jpg`
     }
-    const allStart = <img className="image" {...imgProps} alt="shoes" />
 
     return(
         <div>
-             {allStart}
+             <img className="image" {...imgProps} alt="Product" />
         </div>
     )
 }
