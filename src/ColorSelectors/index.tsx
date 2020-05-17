@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, {useState} from 'react';
 
 interface IProps {
     color:string,
@@ -8,36 +9,47 @@ interface IProps {
 
 
 
+
+
+
+function onColorChange(evt:any, handleColorChange:Function) {
+    handleColorChange(evt.target.value);
+
+}
+
+
+
+
+// const onColorChange = (evt:any) => {
+//     handleColorChange(evt.target.value);
+    
+// }
+
+
+
 const ColorSelectors: React.FC<IProps>= (props: IProps) => {
 
-    function ColorOption() {
-        return props.colors.map(function(num:any) {
-            return (
-                <option value={num} key={num}>
-                    {num}
-                </option>
-
-            )
-        })
-
-    }
-
-
-    function onColorChange(e:any) {
-        props.handleColorChange(e.target.value);
-
-    }
-
+    const [ color, setColor ] = useState('purple');
     return(
         <div>
-            <label htmlFor="color-Option"></label>
-            <select defaultValue={props.color}
-            name="colorOptions"
-            id="color-options"
-            onChange={onColorChange}
-            >    
+            <label htmlFor="color-Option">Color</label>
+            <select
+                defaultValue={color} 
+                name="colorOptions"
+                id="color-options"
+                onChange={(evt:any) =>{
+                    onColorChange(evt, props.handleColorChange)
+                    // setColor(evt.target.value)
+                }}  
+            >
+
+                {props.colors.map((color) => {
+                    return(
+                    <option>{color}</option>
+                    )
+                })}
+         
             </select>
-            {ColorOption}
         </div>
     )
 }

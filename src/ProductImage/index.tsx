@@ -6,17 +6,13 @@ interface IProps {
 
 
 const ProductImage: React.FC<IProps> = (props: IProps) => {
-
-    // const {
-    //     color
-    // } = props
-
     const imgProps = {
         src: `../../../assets/${props.color}.jpg`
     }
 
     return(
         <div>
+            {props.color}
              <img className="image" {...imgProps} alt="Product" />
         </div>
     )
