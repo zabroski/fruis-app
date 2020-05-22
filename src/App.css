@@ -6,3 +6,18 @@
   width: 30%;
 }
 
+
+/* .header-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 2px solid black;
+} */
+
+.header-child {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+

@@ -3,12 +3,18 @@ import './App.css';
 import ProductImage from './ProductImage';
 import SizeSelectors from './SizeSelectors';
 import ColorSelectors from './ColorSelectors';
+import Header from './Header';
+import HomePage from './HomePage';
+import AboutMe from './AboutMe'
 import inventory from './data/data';
+import {Route, Link} from "react-router-dom"
+
 
 interface IProps {
   color: string,
   size: string,
-  sizes: string
+  sizes: string,
+  home:string,
   handleSizeChange: any,
   handleColorChange:any
 }
@@ -48,7 +54,20 @@ const App = (props:any) => {
   
   return (
     <div className="App">
-        <h1>Fruits App</h1>
+      {/* <main className="header-container"> */}
+         <Header />
+         <Route path='/home' render= {(props) => {
+             return <HomePage/>
+          }}
+        />
+
+          <Route path='/about' render= {(props) => {
+             return <AboutMe />
+            }}
+        />  
+      {/* </main> */}
+     
+       
         <div>
           <ProductImage color={color}/>
         </div>
